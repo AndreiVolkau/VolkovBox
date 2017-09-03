@@ -49,7 +49,7 @@ public class ConnectionPool {
 			for (int i = 0; i < poolSize; i++) {
 
 				Connection conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost:3306/employees?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false",
+						"jdbc:mysql://localhost:3306/myDb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false",
 						userName, pass);
 
 				connectionQueue.add(conn);

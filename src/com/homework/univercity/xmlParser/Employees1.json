@@ -1,0 +1,61 @@
+{
+   "Employees": {
+      "employee": [
+         {
+            "birthDate": "02/04/1988",
+            "age": "23",
+            "name": "Nicolas",
+            "surname": "Cage",
+            "mobileNumber": "+375255556698",
+            "numberOfSubordinates": "0",
+            "workExperience": "Twenty years",
+            "numberOfPublications": "0",
+            "_id": "1"
+         },
+         {
+            "birthDate": "01/01/1970",
+            "age": "44",
+            "name": "Vitya",
+            "surname": "Perec",
+            "mobileNumber": "+375296065676",
+            "numberOfSubordinates": "2",
+            "workExperience": "Twenty years",
+            "numberOfPublications": "5",
+            "_id": "2"
+         },
+         {
+            "birthDate": "03/05/1989",
+            "age": "23",
+            "name": "Don",
+            "surname": "Pedro",
+            "mobileNumber": "+375255455569",
+            "numberOfSubordinates": "12",
+            "workExperience": "Nineteen years",
+            "numberOfPublications": "4",
+            "_id": "3"
+         },
+         {
+            "birthDate": "01/01/1990",
+            "age": "33",
+            "name": "Igor",
+            "surname": "Pigor",
+            "mobileNumber": "+375172233521",
+            "numberOfSubordinates": "0",
+            "workExperience": "Two years",
+            "numberOfPublications": "0",
+            "_id": "4"
+         },
+         {
+            "birthDate": "01/02/1959",
+            "age": "54",
+            "name": "Vasya",
+            "surname": "Pupkin",
+            "mobileNumber": "+375172233521",
+            "numberOfSubordinates": "5",
+            "workExperience": "Twenty two years",
+            "numberOfPublications": "23",
+            "_id": "5"
+         }
+      ]
+   }
+}

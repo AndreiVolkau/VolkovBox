@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+	
+		<MathTeacher Name="Igor" Surname="Pigor" Age="25"
+			BirthDate="02.02.1991" MobileNumber="+375256666666" WorkExperience="1 year"
+			NumberOfSubordinates="0"></MathTeacher>
+		<MathTeacher Name="Vitya" Surname="Kosoy" Age="42"
+			BirthDate="02.02.1975" MobileNumber="+375446567687"
+			NumberOfSubordinates="2"></MathTeacher>
+		<PhysicsTeacher Name="Nicolas" Surname="Cage" Age="44"
+			BirthDate="13.13.1977" MobileNumber="+375442996666" WorkExperience="20 years"
+			NubmerOfSubordinates="4"></PhysicsTeacher>
+		<PhysicsTeacher Name="Danila" Surname="Bagrov" Age="33"
+			BirthDate="05.05.1984" MobileNumber="+91232426262" WorkExperience="10 years"
+			NumberOfSubordinates="5"></PhysicsTeacher>
+		<Bacalavr Name="Vitalik" Surname="Derzky" Age="24" BirthDate="14.12.1993"
+			MobileNumber="+375445646800" WorkExperience="1 year"></Bacalavr>
+		<Bacalavr Surname="Superman" Age="26" BirthDate="12.12.1991"
+			MobileNumber="+375297767788" WorkExperience="2 years"></Bacalavr>
+		<Magistr Name="Eduard" Surname="Detolubov" Age="35" BirthDate="10.10.1982"
+			MobileNumber="+375296696969" WorkExperience="10 years"
+			NumberOfSuboedinates="2"></Magistr>
+		<Magistr Name="Sergey" Surname="Esenin" Age="123" BirthDate="09.21.1985"
+			MobileNumber="null" WorkExperience="100 years" NumberOfSubordinates="5"></Magistr>
+</Employees>
