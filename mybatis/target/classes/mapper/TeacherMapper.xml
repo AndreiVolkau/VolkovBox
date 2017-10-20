@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TeacherMapper">
+	<select id="getById" parameterType="long" resultMap="teacherMapper">
+		SELECT *
+		FROM
+		teacherdb.teacher t
+		JOIN teacherdb.person p
+		on t.Person_ID = p.ID
+		WHERE
+		p.ID = #{id};
+	</select>
+	<select id="getAll" resultMap="teacherMapper">
+		SELECT *
+		FROM
+		teacherdb.teacher t
+		JOIN teacherdb.person p
+		on t.Person_ID = p.ID
+	</select>
+	
+	<resultMap id="teacherMapper" type="by.homework.entity.Teacher">
+		<id property="id" column="ID" />
+	</resultMap>
+</mapper>
+
