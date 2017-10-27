@@ -24,7 +24,7 @@
 	<mappers>
 	        <mapper resource="mapper/TeacherMapper.xml"/>
 	        <mapper resource="mapper/StudentMapper.xml"/>
-	
+			 <mapper resource="mapper/EconomistMapper.xml"/>
 		
 	</mappers>
 </configuration>
