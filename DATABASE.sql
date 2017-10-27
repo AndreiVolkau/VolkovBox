@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `economist`
+--
+
+DROP TABLE IF EXISTS `economist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `economist` (
+  `Person_ID` int(11) NOT NULL,
+  `Salary` int(11) NOT NULL,
+  `Role` varchar(45) NOT NULL,
+  KEY `person_id_idx` (`Person_ID`),
+  CONSTRAINT `person_id` FOREIGN KEY (`Person_ID`) REFERENCES `person` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `economist`
+--
+
+LOCK TABLES `economist` WRITE;
+/*!40000 ALTER TABLE `economist` DISABLE KEYS */;
+INSERT INTO `economist` VALUES (7,600,'Accountant'),(8,600,'Assistant');
+/*!40000 ALTER TABLE `economist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `person`
 --
 
@@ -31,7 +57,7 @@ CREATE TABLE `person` (
   `MOBILENUMBER` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +66,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Ed','Gayne','1990-12-12',42,'+375293661262'),(2,'Nick','Dick','1923-02-02',35,'+375293135421'),(3,'John','Long','2011-12-12',22,'+37532312341');
+INSERT INTO `person` VALUES (1,'Ed','Gayne','1990-12-12',42,'+375293661262'),(2,'Nick','Dick','1923-02-02',35,'+375293135421'),(3,'John','Long','2011-12-12',22,'+37532312341'),(4,'Loh','Pidr','1992-12-11',44,'+37567586432'),(5,'Sam','Loh','1990-09-11',25,'+375291311212'),(6,'Kto','Loh','1992-02-01',44,'+375293777777'),(7,'Hop','Hey','1991-05-05',25,'+375293335511'),(8,'Sir','Joe','1992-12-12',55,'+375267778899');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +117,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,1,200,'MATH'),(2,2,300,'PHHYSICS'),(3,4,500,'MATH');
+INSERT INTO `student` VALUES (4,1,200,'MATH'),(5,2,542,'PHYSICS'),(6,3,211,'MATH');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-20 15:51:34
+-- Dump completed on 2017-10-27 16:39:03

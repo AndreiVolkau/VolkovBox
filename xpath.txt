@@ -1,0 +1,1 @@
+//tr[contains(@class, 'carRow') and .//span[@class='year' and text()>2013] and .//h2/span//strong[contains(.,'Audi')]]
