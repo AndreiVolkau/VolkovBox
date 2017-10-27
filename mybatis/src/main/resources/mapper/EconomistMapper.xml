@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EconomistMapper">
+	<select id="getById" parameterType="long" resultMap="economistMapper">
+		SELECT *
+		FROM
+		teacherdb.economist e
+		JOIN teacherdb.person p
+		on e.Person_ID = p.ID
+		WHERE
+		p.ID = #{id};
+	</select>
+	<select id="getAll" resultMap="economistMapper">
+		SELECT *
+		FROM
+		teacherdb.economist e
+		JOIN teacherdb.person p
+		on e.Person_ID = p.ID
+	</select>
+	
+	<resultMap id="economistMapper" type="by.homework.entity.Economist">
+		<id property="id" column="ID" />
+	</resultMap>
+</mapper>
