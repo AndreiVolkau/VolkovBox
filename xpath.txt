@@ -1,1 +1,1 @@
-//tr[contains(@class, 'carRow') and .//span[@class='year' and text()>2013] and .//h2/span//strong[contains(.,'Audi')]]
+//tr[contains(@class, 'carRow')and .//p[contains(.,'бензин 2 л')] and .//span[@class='year' and text()>2013] and .//h2/span//strong[contains(.,'Audi')]]
