@@ -7,8 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import by.homework.entity.Teacher;
 import by.homework.util.MyBatisUtil;
 
-public class TeacherDAOImpl implements TeacherDAO {
-
+public class TeacherDAOImpl implements PersonDAO {
+	@Override
 	public Teacher getById(long id) {
 
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
@@ -17,6 +17,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 		return teacher;
 	}
 
+	@Override
 	public List<Teacher> getAll() {
 
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
