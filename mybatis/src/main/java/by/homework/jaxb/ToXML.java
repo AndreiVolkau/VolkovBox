@@ -12,7 +12,7 @@ import javax.xml.bind.Marshaller;
 import by.homework.entity.Specialisation;
 import by.homework.entity.Teacher;
 
-public class JAXBExample {
+public class ToXML {
 
 	public static void main(String[] args) throws ParseException {
 		Teacher t1 = new Teacher();
