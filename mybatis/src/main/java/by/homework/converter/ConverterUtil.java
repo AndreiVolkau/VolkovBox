@@ -1,6 +1,8 @@
 package by.homework.converter;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -10,7 +12,8 @@ public class ConverterUtil {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			mapper.writeValue(new File(path), o);
+			System.out.println(mapper.writeValueAsString(o));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

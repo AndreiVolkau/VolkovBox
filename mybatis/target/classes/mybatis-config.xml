@@ -22,9 +22,9 @@
 	</environments>
 
 	<mappers>
-	        <mapper resource="mapper/TeacherMapper.xml"/>
-	        <mapper resource="mapper/StudentMapper.xml"/>
-			 <mapper resource="mapper/EconomistMapper.xml"/>
-		
+		<mapper resource="mapper/TeacherMapper.xml" />
+		<mapper resource="mapper/StudentMapper.xml" />
+		<mapper resource="mapper/EconomistMapper.xml" />
+		<mapper resource="mapper/AddressMapper.xml" />
 	</mappers>
 </configuration>

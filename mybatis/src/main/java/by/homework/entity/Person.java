@@ -1,11 +1,15 @@
 package by.homework.entity;
 
 import java.time.LocalDate;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import by.homework.converter.LocalDateDeserializer;
+import by.homework.converter.LocalDateSerializer;
 import by.homework.jaxb.LocalDateAdapter;
 
 @XmlRootElement
@@ -16,7 +20,7 @@ public abstract class Person {
 	private String name;
 
 	private String surname;
-
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 
 	private int age;
@@ -44,9 +48,11 @@ public abstract class Person {
 	public LocalDate getBirthDate() {
 		return birthDate;
 	}
-	
+
 	@XmlJavaTypeAdapter(value = LocalDateAdapter.class)
 	@XmlElement
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
