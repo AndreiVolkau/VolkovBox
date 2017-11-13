@@ -1,21 +1,24 @@
 package by.homework.converter;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import by.homework.entity.Person;
 
 public class ConverterUtil {
 
-	public static void toJSON(Object o, String path) {
+	public static void toJSON(Object o, String path) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 
-		try {
-			System.out.println(mapper.writeValueAsString(o));
+		mapper.writeValue(new File(path), o);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	}
+
+	public static Person[] toObject(Class<?> c, String path) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+
+		return (Person[]) mapper.readValue(new File(path), c);
+
 	}
 }

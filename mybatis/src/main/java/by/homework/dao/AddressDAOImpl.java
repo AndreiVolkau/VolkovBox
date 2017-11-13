@@ -10,7 +10,7 @@ public class AddressDAOImpl implements AddressDAO {
 	public Address getById(long id) {
 
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-		Address address = session.selectOne("EconomistMapper.getById", id);
+		Address address = session.selectOne("AddressMapper.getById", id);
 		session.close();
 		return address;
 

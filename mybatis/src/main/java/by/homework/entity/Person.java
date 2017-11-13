@@ -20,13 +20,15 @@ public abstract class Person {
 	private String name;
 
 	private String surname;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	
 	private LocalDate birthDate;
 
 	private int age;
 
 	private String mobileNumber;
-
+	
+	private Address address;
+	
 	public String getName() {
 		return name;
 	}
@@ -84,10 +86,20 @@ public abstract class Person {
 		this.id = id;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "id=" + id + ", name=" + name + ", surname=" + surname + ", birthDate=" + birthDate + ", age=" + age
-				+ ", mobileNumber=" + mobileNumber;
+		return " id=" + id + ", name=" + name + ", surname=" + surname + ", birthDate=" + birthDate + ", age="
+				+ age + ", mobileNumber=" + mobileNumber + ", "+ address + "";
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }

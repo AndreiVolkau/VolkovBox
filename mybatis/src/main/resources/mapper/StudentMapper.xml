@@ -19,8 +19,17 @@
 		JOIN teacherdb.person p
 		on s.Person_ID = p.ID
 	</select>
-	
+
 	<resultMap id="studentMapper" type="by.homework.entity.Student">
 		<id property="id" column="ID" />
+		<association property="address" column="ADDRESS_ID"
+			javaType="by.homework.entity.Address" select="selectAddress" />
+
 	</resultMap>
+	<select id="selectAddress" resultType = "by.homework.entity.Address">
+		SELECT *
+		FROM
+		teacherdb.address
+		where id = #{id};
+	</select>
 </mapper>

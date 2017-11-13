@@ -14,41 +14,37 @@ import by.homework.dao.StudentDAOImpl;
 import by.homework.dao.TeacherDAOImpl;
 import by.homework.entity.Address;
 import by.homework.entity.Person;
+import by.homework.entity.Student;
 import by.homework.entity.Teacher;
 
 public class Main {
 
-	public static void main(String[] args) {
-//		PersonDAO teacherDAO = new TeacherDAOImpl();
-//		Person teacher = teacherDAO.getById(1);
-//		System.out.println(teacher);
-//		List<Person> teachers = (List<Person>) teacherDAO.getAll();
-//
-//		for (Person teacher2 : teachers) {
-//			System.out.println(teacher2);
-//		}
+	public static void main(String[] args) throws Exception {
+		PersonDAO teacherDAO = new TeacherDAOImpl();
+
+		List<Person> teachers = (List<Person>) teacherDAO.getAll();
+
+		for (Person teacher2 : teachers) {
+			System.out.println(teacher2);
+		}
 		PersonDAO studentDAO = new StudentDAOImpl();
-//		Person student = studentDAO.getById(1);
-//		System.out.println(student);
+	
 		List<Person> students = (List<Person>) studentDAO.getAll();
 
-		for (Person student2 : students) {
-			//System.out.println(student2);
-			ConverterUtil.toJSON(student2, "src\\students.json");
-		}
-
-		/*PersonDAO economistDAO = new EconomistDAOImpl();
-		Person economist = economistDAO.getById(1);
-		System.out.println(economist);
+		PersonDAO economistDAO = new EconomistDAOImpl();
+		
 		List<Person> economists = (List<Person>) economistDAO.getAll();
 		System.out.println(economists);
+		System.out.println("Converter");
 		ConverterUtil.toJSON(students, "src\\students.json");
-		
-		 * Teacher t2 = ConverterUtil.toObject("src\\students.json");
-		  Teacher t = new Teacher();
+		Person p[] = ConverterUtil.toObject(Student[].class, "src\\students.json");
+		for (Person person : p) {
+			System.out.println(person);
+		}
+		Teacher t = new Teacher();
 		Class<? extends Teacher> aclass = t.getClass();
 		t.getName();
-
+		System.out.println("Reflection");
 		System.out.println("Teacher's " + aclass);
 
 		Class<? extends Teacher> Teacher = t.getClass();
@@ -59,6 +55,6 @@ public class Main {
 		Method[] m = t.getClass().getMethods();
 		System.out.println("Teacher's methods are " + Arrays.toString(m));
 		Field[] f = t.getClass().getDeclaredFields();
-		System.out.println("Teacher's fields are " + Arrays.toString(f));*/
+		System.out.println("Teacher's fields are " + Arrays.toString(f));
 	}
 }

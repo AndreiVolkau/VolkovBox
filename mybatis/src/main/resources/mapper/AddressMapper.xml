@@ -6,11 +6,9 @@
 	<select id="getById" parameterType="long" resultMap="addressMapper">
 		SELECT *
 		FROM
-		teacherdb.address a
-		JOIN teacherdb.person p
-		on a.Person_ID = p.ID
+		teacherdb.address
 		WHERE
-		p.ID = #{id};
+		ID = #{id};
 	</select>
 	<resultMap id="addressMapper" type="by.homework.entity.Address">
 		<id property="id" column="ID" />
