@@ -12,15 +12,49 @@
 		WHERE
 		p.ID = #{id};
 	</select>
-	<select id="getAll" resultMap="economistMapper">
+	<select id="getAll" resultMap="EconomistMapper">
 		SELECT *
 		FROM
 		teacherdb.economist e
 		JOIN teacherdb.person p
 		on e.Person_ID = p.ID
 	</select>
-	
+	<insert id="createEconomist" useGeneratedKeys="true" >
+		INSERT
+		INTO teacherdb.economist (SALARY, ROLE)
+		VALUES
+		(#{salary}, #{role});
+	</insert>
+	<insert id="createPerson" useGeneratedKeys="true" >
+		INSERT
+		INTO teacherdb.person (NAME, SURNAME, BIRTHDATE, AGE, MOBILENUMBER, ADDRESS_ID)
+		VALUES(#{name}, #{surname}, #{birthDate}, #{age}, #{mobileNumber}, #{addressId});
+	</insert>
+	<update id="updateEconomist">
+		UPDATE teacherdb.economist
+		SET SALARY = #{salary},
+		ROLE = #{role}
+		WHERE PERSON_ID = #{id}
+	</update>
+	<update id="updatePerson">
+		UPDATE teacherdb.person
+		SET NAME = #{name},
+		SURNAME = #{surname},
+		BIRTHDATE= #{birthDate},
+		AGE= #{age},
+		MOBILENUMBER= #{mobileNumber},
+		ADDRESS_ID= #{addressId}
+		WHERE ID = #{id}	
+	</update>
+	<delete id="deleteEconomist">
+		DELETE FROM teacherdb.economist WHERE PERSON_ID = #{id};
+	</delete>
+	<delete id="deletePerson">
+		DELETE FROM teacherdb.person WHERE ID = #{id};
+	</delete>
 	<resultMap id="economistMapper" type="by.homework.entity.Economist">
-		<id property="id" column="ID" />
+		<id property="id" column="PERSON_ID" />
+		<association property="person" column="ID"
+			javaType="by.homework.entity.Person" select="selectAddress" />
 	</resultMap>
 </mapper>

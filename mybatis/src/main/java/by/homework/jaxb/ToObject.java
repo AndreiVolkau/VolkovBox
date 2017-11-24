@@ -5,9 +5,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.log4j.Logger;
+
 import by.homework.entity.Teacher;
 
 public class ToObject {
+	public static final Logger LOGGER = Logger.getLogger(ToObject.class);
 	public static void main(String[] args) {
 
 		try {
@@ -20,7 +23,7 @@ public class ToObject {
 			System.out.println(teacher);
 
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 	}

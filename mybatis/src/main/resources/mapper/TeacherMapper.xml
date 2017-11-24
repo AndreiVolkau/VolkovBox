@@ -10,7 +10,7 @@
 		JOIN teacherdb.person p
 		on t.Person_ID = p.ID
 		WHERE
-		p.ID = #{id};
+		p.ID = #{id}
 	</select>
 	<select id="getAll" resultMap="teacherMapper">
 		SELECT *
@@ -19,9 +19,92 @@
 		JOIN teacherdb.person p
 		on t.Person_ID = p.ID
 	</select>
-	
+	<select id="selectStudents" resultMap="studentMapper">
+		SELECT *
+		FROM
+		teacherdb.student s
+		JOIN
+		teacherdb.person p on s.PERSON_ID = p.ID
+		JOIN
+		teacherdb.students_have_teachers sht on s.PERSON_ID = sht.STUDENT_ID
+		and sht.TEACHER_ID = #{id}
+	</select>
+	<select id="selectAddress" resultType="by.homework.entity.Address">
+		SELECT *
+		FROM
+		teacherdb.address
+		where id = #{id};
+	</select>
+	<select id="selectSpecialisation" resultType="by.homework.entity.Specialisation">
+		SELECT NAME
+		FROM
+		teacherdb.specialisation
+		where id = #{id};
+	</select>
+	<insert id="createTeacher" useGeneratedKeys="true">
+		INSERT
+		INTO
+		teacherdb.teacher (WORKEXPERIENCE, PUBLICATIONS, CATEGORY,
+		SPECIALISATION_ID)
+		VALUES
+		(#{workExperience},
+		#{publications},#{category},#{specialisation});
+	</insert>
+	<insert id="createPerson" useGeneratedKeys="true">
+		INSERT
+		INTO
+		teacherdb.person (NAME, SURNAME, BIRTHDATE, AGE, MOBILENUMBER,
+		ADDRESS_ID)
+		VALUES(#{name}, #{surname}, #{birthDate}, #{age},
+		#{mobileNumber}, #{addressId});
+	</insert>
+	<update id="updateTeacher">
+		UPDATE teacherdb.teacher
+		SET WORKEXPERIENCE =
+		#{workExperience},
+		PUBLICATIONS = #{publications},
+		CATEGORY =
+		#{category},
+		SPECIALISATION_ID = #{specialisation}
+		WHERE PERSON_ID =
+		#{id}
+	</update>
+	<update id="updatePerson">
+		UPDATE teacherdb.person
+		SET NAME = #{name},
+		SURNAME =
+		#{surname},
+		BIRTHDATE= #{birthDate},
+		AGE= #{age},
+		MOBILENUMBER=
+		#{mobileNumber},
+		ADDRESS_ID= #{addressId}
+		WHERE ID = #{id}
+	</update>
+	<delete id="deleteTeacher">
+		DELETE FROM teacherdb.teacher WHERE PERSON_ID =
+		#{id};
+	</delete>
+	<delete id="deletePerson">
+		DELETE FROM teacherdb.person WHERE ID = #{id};
+	</delete>
 	<resultMap id="teacherMapper" type="by.homework.entity.Teacher">
 		<id property="id" column="ID" />
+		<association property="specialisation" column="SPECIALISATION_ID"
+			javaType="by.homework.entity.Specialisation" select="selectSpecialisation" />
+
+
+		<association property="address" column="ADDRESS_ID"
+			javaType="by.homework.entity.Address" select="selectAddress" />
+
+		<collection property="students" javaType="ArrayList"
+			column="ID" ofType="by.homework.entity.Student" select="selectStudents">
+		</collection>
+	</resultMap>
+	<resultMap type="by.homework.entity.Student" id="studentMapper">
+		<association property="address" column="ADDRESS_ID"
+			javaType="by.homework.entity.Address" select="selectAddress" />
+
 	</resultMap>
 </mapper>
 

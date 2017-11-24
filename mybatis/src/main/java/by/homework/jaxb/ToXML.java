@@ -2,18 +2,19 @@ package by.homework.jaxb;
 
 import java.io.File;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.apache.log4j.Logger;
+
 import by.homework.entity.Specialisation;
 import by.homework.entity.Teacher;
 
 public class ToXML {
-
+	public static final Logger LOGGER = Logger.getLogger(ToXML.class);
 	public static void main(String[] args) throws ParseException {
 		Teacher t1 = new Teacher();
 		t1.setAge(25);
@@ -39,7 +40,7 @@ public class ToXML {
 			jaxbMarshaller.marshal(t1, System.out);
 
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 	}

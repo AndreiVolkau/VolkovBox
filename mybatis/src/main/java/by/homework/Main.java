@@ -6,15 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import by.homework.converter.ConverterUtil;
-import by.homework.dao.AddressDAO;
-import by.homework.dao.AddressDAOImpl;
-import by.homework.dao.EconomistDAOImpl;
 import by.homework.dao.PersonDAO;
-import by.homework.dao.StudentDAOImpl;
-import by.homework.dao.TeacherDAOImpl;
-import by.homework.entity.Address;
+import by.homework.dao.impl.mybatis.EconomistDAOImpl;
+import by.homework.dao.impl.mybatis.StudentDAOImpl;
+import by.homework.dao.impl.mybatis.TeacherDAOImpl;
 import by.homework.entity.Person;
-import by.homework.entity.Student;
 import by.homework.entity.Teacher;
 
 public class Main {
@@ -24,23 +20,19 @@ public class Main {
 
 		List<Person> teachers = (List<Person>) teacherDAO.getAll();
 
-		for (Person teacher2 : teachers) {
-			System.out.println(teacher2);
+		for (Person teacher : teachers) {
+			System.out.println(teacher);
 		}
 		PersonDAO studentDAO = new StudentDAOImpl();
-	
-		List<Person> students = (List<Person>) studentDAO.getAll();
 
 		PersonDAO economistDAO = new EconomistDAOImpl();
-		
-		List<Person> economists = (List<Person>) economistDAO.getAll();
+
+		List<Person> list = (List<Person>) economistDAO.getAll();
+		List<Person> economists = list;
 		System.out.println(economists);
-		System.out.println("Converter");
-		ConverterUtil.toJSON(students, "src\\students.json");
-		Person p[] = ConverterUtil.toObject(Student[].class, "src\\students.json");
-		for (Person person : p) {
-			System.out.println(person);
-		}
+
+		ConverterUtil.toJSON(teachers, "src\\teachers.json");
+
 		Teacher t = new Teacher();
 		Class<? extends Teacher> aclass = t.getClass();
 		t.getName();
@@ -53,8 +45,10 @@ public class Main {
 		System.out.println("Teacher's superclass is " + superclass);
 
 		Method[] m = t.getClass().getMethods();
-		System.out.println("Teacher's methods are " + Arrays.toString(m));
+
+		System.out.println("Teacher's methods are \n" + Arrays.toString(m));
+
 		Field[] f = t.getClass().getDeclaredFields();
-		System.out.println("Teacher's fields are " + Arrays.toString(f));
+		System.out.println("Teacher's fields are \n " + Arrays.toString(f));
 	}
 }

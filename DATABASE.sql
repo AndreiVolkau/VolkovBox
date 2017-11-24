@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `address`
+--
+
+DROP TABLE IF EXISTS `address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `address` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CITY` varchar(45) DEFAULT NULL,
+  `STREET` varchar(45) DEFAULT NULL,
+  `HOUSE` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_idx` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `address`
+--
+
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (1,'11111','111111111d',111111),(2,'Polock','Lenina',25),(3,'Brest','Kirova',21),(4,'Mogilev','Cetkin',225),(5,'Necropolis','Hell',666),(6,'London','Baker',25),(7,'Brest','Hui',1),(8,'Minsk','Bangalor',21),(9,'Orsha','Porsha',22),(11,'aaaaaa','22222222',222221),(12,'aaaaaa','22222222',222221);
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `economist`
 --
 
@@ -23,11 +50,11 @@ DROP TABLE IF EXISTS `economist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `economist` (
-  `Person_ID` int(11) NOT NULL,
-  `Salary` int(11) NOT NULL,
-  `Role` varchar(45) NOT NULL,
-  KEY `person_id_idx` (`Person_ID`),
-  CONSTRAINT `person_id` FOREIGN KEY (`Person_ID`) REFERENCES `person` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `PERSON_ID` int(11) NOT NULL,
+  `SALARY` int(11) NOT NULL,
+  `ROLE` varchar(45) NOT NULL,
+  KEY `person_id_idx` (`PERSON_ID`),
+  CONSTRAINT `person_id` FOREIGN KEY (`PERSON_ID`) REFERENCES `person` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,7 +64,7 @@ CREATE TABLE `economist` (
 
 LOCK TABLES `economist` WRITE;
 /*!40000 ALTER TABLE `economist` DISABLE KEYS */;
-INSERT INTO `economist` VALUES (7,600,'Accountant'),(8,600,'Assistant');
+INSERT INTO `economist` VALUES (7,222,'Assistant'),(8,600,'Assistant');
 /*!40000 ALTER TABLE `economist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,8 +82,11 @@ CREATE TABLE `person` (
   `BIRTHDATE` date DEFAULT NULL,
   `AGE` int(11) DEFAULT NULL,
   `MOBILENUMBER` varchar(45) DEFAULT NULL,
+  `ADDRESS_ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
+  UNIQUE KEY `ID_UNIQUE` (`ID`),
+  KEY `FK_ADDRESS_ID_idx` (`ADDRESS_ID`),
+  CONSTRAINT `FK_ADDRESS_ID` FOREIGN KEY (`ADDRESS_ID`) REFERENCES `address` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,7 +96,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Ed','Gayne','1990-12-12',42,'+375293661262'),(2,'Nick','Dick','1923-02-02',35,'+375293135421'),(3,'John','Long','2011-12-12',22,'+37532312341'),(4,'Loh','Pidr','1992-12-11',44,'+37567586432'),(5,'Sam','Loh','1990-09-11',25,'+375291311212'),(6,'Kto','Loh','1992-02-01',44,'+375293777777'),(7,'Hop','Hey','1991-05-05',25,'+375293335511'),(8,'Sir','Joe','1992-12-12',55,'+375267778899');
+INSERT INTO `person` VALUES (1,'Ed','Gayne','1990-12-12',42,'+375293661262',1),(2,'Nick','Dick','1923-02-02',35,'+375293135421',2),(3,'John','Long','2011-12-12',22,'+37532312341',3),(4,'Loh','Pidr','1992-12-11',44,'+37567586432',4),(5,'Sam','Loh','1990-09-11',25,'+375291311212',5),(6,'Kto','Loh','1992-02-01',44,'+375293777777',6),(7,'Sir','Her','2017-11-22',66,'1231254135135',4),(8,'Sir','Joe','1992-12-12',55,'+375267778899',8);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +109,7 @@ DROP TABLE IF EXISTS `specialisation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specialisation` (
   `ID` int(11) NOT NULL,
-  `SPECIALISATIONNAME` varchar(45) DEFAULT NULL,
+  `NAME` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -90,7 +120,7 @@ CREATE TABLE `specialisation` (
 
 LOCK TABLES `specialisation` WRITE;
 /*!40000 ALTER TABLE `specialisation` DISABLE KEYS */;
-INSERT INTO `specialisation` VALUES (1,'MATH'),(2,'PHYSICS');
+INSERT INTO `specialisation` VALUES (1,'MATH_TEACHER'),(2,'PHYSICS_TEACHER');
 /*!40000 ALTER TABLE `specialisation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,6 +152,33 @@ INSERT INTO `student` VALUES (4,1,200,'MATH'),(5,2,542,'PHYSICS'),(6,3,211,'MATH
 UNLOCK TABLES;
 
 --
+-- Table structure for table `students_have_teachers`
+--
+
+DROP TABLE IF EXISTS `students_have_teachers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `students_have_teachers` (
+  `STUDENT_ID` int(11) NOT NULL,
+  `TEACHER_ID` int(11) NOT NULL,
+  PRIMARY KEY (`STUDENT_ID`,`TEACHER_ID`),
+  KEY `fk_TEACHER_ID_idx` (`TEACHER_ID`),
+  CONSTRAINT `fk_STUDENT_ID` FOREIGN KEY (`STUDENT_ID`) REFERENCES `student` (`Person_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TEACHER_ID` FOREIGN KEY (`TEACHER_ID`) REFERENCES `teacher` (`PERSON_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `students_have_teachers`
+--
+
+LOCK TABLES `students_have_teachers` WRITE;
+/*!40000 ALTER TABLE `students_have_teachers` DISABLE KEYS */;
+INSERT INTO `students_have_teachers` VALUES (4,1),(5,1),(6,2),(5,3);
+/*!40000 ALTER TABLE `students_have_teachers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `teacher`
 --
 
@@ -129,16 +186,16 @@ DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `teacher` (
-  `Person_ID` int(11) NOT NULL,
-  `Specialisation_ID` int(11) NOT NULL,
+  `PERSON_ID` int(11) NOT NULL,
   `WORKEXPERIENCE` int(11) DEFAULT NULL,
   `PUBLICATIONS` int(11) DEFAULT NULL,
   `CATEGORY` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Person_ID`),
-  KEY `fk_TEACHER_Specialisation1_idx` (`Specialisation_ID`),
-  KEY `fk_TEACHER_Person1_idx` (`Person_ID`),
-  CONSTRAINT `fk_TEACHER_Person1` FOREIGN KEY (`Person_ID`) REFERENCES `person` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_TEACHER_Specialisation1` FOREIGN KEY (`Specialisation_ID`) REFERENCES `specialisation` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `SPECIALISATION_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PERSON_ID`),
+  KEY `fk_TEACHER_Person1_idx` (`PERSON_ID`),
+  KEY `fk_SPECIALISATION_ID_idx` (`SPECIALISATION_ID`),
+  CONSTRAINT `fk_SPECIALISATION_ID` FOREIGN KEY (`SPECIALISATION_ID`) REFERENCES `specialisation` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TEACHER_Person1` FOREIGN KEY (`PERSON_ID`) REFERENCES `person` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -148,7 +205,7 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES (1,1,4,2,1),(2,2,3,13,2),(3,2,5,1,2);
+INSERT INTO `teacher` VALUES (1,4,2,1,1),(2,3,13,2,2),(3,5,1,2,1);
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -161,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-27 16:39:03
+-- Dump completed on 2017-11-24 15:53:16

@@ -10,6 +10,22 @@
 		WHERE
 		ID = #{id};
 	</select>
+	<insert id="create" useGeneratedKeys="true" keyProperty="id">
+		INSERT
+		INTO teacherdb.address (ID, CITY, STREET, HOUSE)
+		VALUES (#{id},
+		#{city}, #{street}, #{house});
+	</insert>
+	<update id="update">
+		UPDATE teacherdb.address
+		SET CITY = #{city}, 
+		STREET = #{street},
+		HOUSE = #{house}
+		WHERE ID = #{id}
+	</update>
+	<delete id="delete">
+		DELETE FROM teacherdb.address WHERE ID = #{id}
+	</delete>
 	<resultMap id="addressMapper" type="by.homework.entity.Address">
 		<id property="id" column="ID" />
 	</resultMap>

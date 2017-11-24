@@ -6,20 +6,34 @@ import java.io.InputStream;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.Logger;
 
 public class MyBatisUtil {
-	private static SqlSessionFactory sqlSessionFactory;
-	static {
-		String resource = "mybatis-config.xml";
-		InputStream inputStream;
+	public static final Logger LOGGER = Logger.getLogger(MyBatisUtil.class);
+	private static final MyBatisUtil INSTANCE = new MyBatisUtil();
+	private SqlSessionFactory sqlSessionFactory;
+	private String resource = "mybatis-config.xml";
+
+	public static MyBatisUtil getInstance() {
+		return INSTANCE;
+	}
+
+	private MyBatisUtil() {
+		init();
+	}
+
+	private void init() {
+
 		try {
-			inputStream = Resources.getResourceAsStream(resource);
+			InputStream inputStream = Resources.getResourceAsStream(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
-	public static SqlSessionFactory getSqlSessionFactory(){
+
+	public SqlSessionFactory getSqlSessionFactory() {
 		return sqlSessionFactory;
 	}
+
 }

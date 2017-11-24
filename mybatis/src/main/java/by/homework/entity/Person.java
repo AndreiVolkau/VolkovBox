@@ -14,26 +14,34 @@ import by.homework.jaxb.LocalDateAdapter;
 
 @XmlRootElement
 public abstract class Person {
-
+	@XmlElement
 	private long id;
 
+	@XmlElement
 	private String name;
 
+	@XmlElement
 	private String surname;
-	
+
+	@XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+	@XmlElement
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate birthDate;
 
+	@XmlElement
 	private int age;
 
+	@XmlElement
 	private String mobileNumber;
-	
+
+	@XmlElement
 	private Address address;
-	
+
 	public String getName() {
 		return name;
 	}
 
-	@XmlElement
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -42,7 +50,6 @@ public abstract class Person {
 		return surname;
 	}
 
-	@XmlElement
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
@@ -51,10 +58,6 @@ public abstract class Person {
 		return birthDate;
 	}
 
-	@XmlJavaTypeAdapter(value = LocalDateAdapter.class)
-	@XmlElement
-	@JsonDeserialize(using = LocalDateDeserializer.class)
-	@JsonSerialize(using = LocalDateSerializer.class)
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
@@ -63,7 +66,6 @@ public abstract class Person {
 		return age;
 	}
 
-	@XmlElement
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -72,7 +74,6 @@ public abstract class Person {
 		return mobileNumber;
 	}
 
-	@XmlElement
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
@@ -81,25 +82,26 @@ public abstract class Person {
 		return id;
 	}
 
-	@XmlElement
 	public void setId(long id) {
 		this.id = id;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return " id=" + id + ", name=" + name + ", surname=" + surname + ", birthDate=" + birthDate + ", age="
-				+ age + ", mobileNumber=" + mobileNumber + ", "+ address + "";
 	}
 
 	public Address getAddress() {
 		return address;
 	}
 
+	public long getAddressId() {
+		return address.getId();
+	}
+
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", surname=" + surname + ", birthDate=" + birthDate + ", age="
+				+ age + ", mobileNumber=" + mobileNumber + ", address=" + address + "]";
 	}
 
 }

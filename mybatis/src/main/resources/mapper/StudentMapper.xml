@@ -19,14 +19,56 @@
 		JOIN teacherdb.person p
 		on s.Person_ID = p.ID
 	</select>
-
+	<insert id="createStudent" useGeneratedKeys="true">
+		INSERT
+		INTO
+		teacherdb.student (COURSENUMBER, SCHOLARSHIP, FACULTYNAME)
+		VALUES
+		(#{courseNumber}, #{scholarship},#{facultyName});
+	</insert>
+	<insert id="createPerson" useGeneratedKeys="true">
+		INSERT
+		INTO
+		teacherdb.person (NAME, SURNAME, BIRTHDATE, AGE, MOBILENUMBER,
+		ADDRESS_ID)
+		VALUES(#{name}, #{surname}, #{birthDate}, #{age},
+		#{mobileNumber}, #{addressId});
+	</insert>
+	<update id="updateStudent">
+		UPDATE teacherdb.student
+		SET COURSENUMBER =
+		#{courseNumber},
+		SCHOLARSHIP = #{scholarship},
+		FACULTYNAME =
+		#{facultyName}
+		WHERE PERSON_ID = #{id}
+	</update>
+	<update id="updatePerson">
+		UPDATE teacherdb.person
+		SET NAME = #{name},
+		SURNAME =
+		#{surname},
+		BIRTHDATE= #{birthDate},
+		AGE= #{age},
+		MOBILENUMBER=
+		#{mobileNumber},
+		ADDRESS_ID= #{addressId}
+		WHERE ID = #{id}
+	</update>
+	<delete id="deleteStudent">
+		DELETE FROM teacherdb.student WHERE PERSON_ID =
+		#{id};
+	</delete>
+	<delete id="deletePerson">
+		DELETE FROM teacherdb.person WHERE ID = #{id};
+	</delete>
 	<resultMap id="studentMapper" type="by.homework.entity.Student">
 		<id property="id" column="ID" />
 		<association property="address" column="ADDRESS_ID"
 			javaType="by.homework.entity.Address" select="selectAddress" />
 
 	</resultMap>
-	<select id="selectAddress" resultType = "by.homework.entity.Address">
+	<select id="selectAddress" resultType="by.homework.entity.Address">
 		SELECT *
 		FROM
 		teacherdb.address

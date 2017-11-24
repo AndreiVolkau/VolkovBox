@@ -1,11 +1,15 @@
 package by.homework.entity;
 
-public class Student  extends Person {
-	
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Student extends Person {
+	@XmlElement
 	private int courseNumber;
-	
+	@XmlElement
 	private int scholarship;
-	
+	@XmlElement
 	private String facultyName;
 
 	public int getCourseNumber() {
@@ -34,8 +38,8 @@ public class Student  extends Person {
 
 	@Override
 	public String toString() {
-		return "Student [courseNumber=" + courseNumber + ", scholarship=" + scholarship + ", facultyName=" + facultyName + ", "
-				 + super.toString() + "]";
+		return  "\n" +  super.toString()  + "Student [courseNumber=" + courseNumber + ", scholarship=" + scholarship
+				+ ", facultyName=" + facultyName + "]";
 	}
-	
+
 }
